@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import path from "path";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
+import booksRoute from "./routes/booksRoute.js"
 
 // const __dirname = path.resolve();
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blog-app";
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use("/users", userRoutes);
+app.use("/books", booksRoute);
 
 app.get("/", (req, res) => {
 //   res.json({ status: "200" }).sendFile(path.join(__dirname, "index.html"));

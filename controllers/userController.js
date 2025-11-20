@@ -1,10 +1,8 @@
 import UserData from "../model/users.js";
 
 const getAllUsersList = async (req, res) => {
-  console.log("Entered");
   const users = await UserData.find();
   if (!users) return res.json({ message: "No user data found!" });
-  console.log("user data", users);
   res.json(users);
 };
 
@@ -36,7 +34,7 @@ const addNewUsers = async (req, res) => {
 const updateUserDetails = async (req, res) => {
   const userQuery = req.query ? req.query : req.body;
   const name = userQuery?.name ? userQuery.name : null;
-  if (!name) return res.json({ message: "Username is required!" });
+  if (!name) return res.status(204).json({ message: "Username is required!" });
   const existingUser = await UserData.findOne({ name: name }).exec();
   //check for user in DB
   if (!existingUser)

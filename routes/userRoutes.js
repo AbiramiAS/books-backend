@@ -10,4 +10,5 @@ router.route("/")
 
 router.route("/:id")
           .post(userController.getUserDetailByID);
+          
 export default router;
