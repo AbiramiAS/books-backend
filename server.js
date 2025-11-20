@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 
 // const __dirname = path.resolve();
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogapp";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blog-app";
 const PORT = process.env.PORT || 4000;
 dotenv.config();
 
