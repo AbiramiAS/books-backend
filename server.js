@@ -3,8 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import mongoose from "mongoose";
+import corsOptions from "./configs/corsOptions.js";
 import userRoutes from "./routes/userRoutes.js";
-import booksRoute from "./routes/booksRoute.js"
+import booksRoute from "./routes/booksRoute.js";
 
 // const __dirname = path.resolve();
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blog-app";
@@ -17,11 +18,7 @@ const app = express();
 app.use(express.json());
 
 //Cors origin handling
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-  })
-);
+app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
 app.use("/books", booksRoute);
