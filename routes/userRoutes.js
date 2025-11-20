@@ -8,4 +8,6 @@ router.route("/")
           .post(userController.addNewUsers)
           .put(userController.updateUserDetails);
 
+router.route("/:id")
+          .post(userController.getUserDetailByID);
 export default router;

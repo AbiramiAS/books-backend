@@ -39,7 +39,8 @@ const updateUserDetails = async (req, res) => {
   if (!name) return res.json({ message: "Username is required!" });
   const existingUser = await UserData.findOne({ name: name }).exec();
   //check for user in DB
-  if (!existingUser) return res.status(204).json({ message: "No user data found!" });
+  if (!existingUser)
+    return res.status(204).json({ message: "No user data found!" });
   //updating all data of corresponding user
   if (userQuery.name) existingUser.name = userQuery.name;
   if (userQuery.username) existingUser.username = userQuery.username;
@@ -59,8 +60,22 @@ const updateUserDetails = async (req, res) => {
     User_Details: result,
   });
 };
+
+const getUserDetailByID = async (req, res) => {
+  const userQuery = req.query ? req.query : req.params;
+  const userID = userQuery?.id;
+  if (userID) {
+    const fetchUser = await UserData.findOne({ _id: userID }).exec();
+    if (fetchUser) res.json({ message: "User Details found", data: fetchUser });
+    if (!fetchUser)
+      res.json({ message: "No User Detail found! ID does not match." });
+  } else {
+    res.json({ message: "User ID is required" });
+  }
+};
 export default {
   getAllUsersList,
   addNewUsers,
   updateUserDetails,
+  getUserDetailByID,
 };
