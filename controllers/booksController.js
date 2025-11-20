@@ -43,8 +43,17 @@ const updateBookDetails = async (req, res) => {
   res.status(200).json({ message: "Data updated successfully!", result });
 };
 
+const deleteBooksData = async (req, res) => {
+          const reqQuery = req.query ? req.query : req.body;
+          if (!reqQuery.id) res.json({ message: "Book Id is required!" });
+          const data = await BooksData.deleteOne({ _id: reqQuery.id }).exec();
+          console.log("Books Data",data);
+          res.status(200).json({ message: "Books Data deleted successfully!" });
+}
+
 export default {
   getAllBooksData,
   addNewBooksData,
-  updateBookDetails,
+          updateBookDetails,
+  deleteBooksData
 };
