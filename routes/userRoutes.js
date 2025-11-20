@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/")
           .get(userController.getAllUsersList)
-          
-          .post(userController.addNewUsers);
+          .post(userController.addNewUsers)
+          .put(userController.updateUserDetails);
 
 export default router;
