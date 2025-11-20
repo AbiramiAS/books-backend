@@ -11,6 +11,6 @@ const booksSchema = new Schema({
           body: String
 });
 
-const BooksData = mongoose.model("books_list", booksSchema);
+const BooksData = mongoose.model("books_lists", booksSchema);
 
 export default BooksData;

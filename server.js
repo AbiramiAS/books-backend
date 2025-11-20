@@ -6,6 +6,8 @@ import connectDB from "./configs/dbconnection.js"
 import corsOptions from "./configs/corsOptions.js";
 import userRoutes from "./routes/userRoutes.js";
 import booksRoute from "./routes/booksRoute.js";
+import mainRoutes from "./routes/registerRoutes.js"
+import signinRoutes from "./routes/signinRoutes.js";
 
 const PORT = process.env.PORT || 4000;
 dotenv.config();
@@ -21,6 +23,8 @@ app.use(cors(corsOptions));
 
 app.use("/users", userRoutes);
 app.use("/books", booksRoute);
+app.use("/register", mainRoutes);
+app.use("/signin", signinRoutes);
 
 app.get("/", (req, res) => {
   res.json({ status: "200" }).sendFile(path.join(__dirname, "index.html"));
